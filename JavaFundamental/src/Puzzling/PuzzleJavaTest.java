@@ -3,6 +3,10 @@ package Puzzling;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+import java.util.stream.StreamSupport;
 
 public class PuzzleJavaTest {
 	public static void main(String[] args) {
@@ -47,6 +51,12 @@ public class PuzzleJavaTest {
 		arrCharacters.add('y');
 		arrCharacters.add('z');
 		System.out.println(task.letter(arrCharacters));
+		
+//		Set<Character> set = StreamSupport.stream(arrCharacters.spliterator(), false).collect(Collectors.toSet());
+//		
+//		List<Integer> chars2 = Stream.of(1,2,3).collect(Collectors.toList());
+		
+		
 		
 		//Generate an array with 10 random numbers between 55-100
 		System.out.println(Arrays.toString(task.arrRandomInt()));
