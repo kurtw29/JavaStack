@@ -43,7 +43,44 @@ public class SinglyLinkedList {
 			}
 		}
 	}
-
+	
+	public Node find(int value) {
+		if(this.head == null) {
+			return null;
+		}else {
+			if(this.head.value == value) {
+				return this.head;	
+			}
+			Node runner = this.head;
+			while(runner.next != null) {
+				runner = runner.next;
+				if(runner.value == value) {
+					return runner;
+				}
+			}
+			return null;
+		}
+	}
+	
+	public void removeAt(int value) {
+		if(this.head == null) {
+			System.out.println("Not values to remove");
+		}else {
+			int counter = 0;
+			if(value == 0) {
+				this.head = null;
+			}
+			Node runner = this.head;
+			while(runner.next != null) {
+				counter ++;
+				if(counter == value) {
+					runner = runner.next.next;
+				}else {
+				runner = runner.next;
+				}
+			}
+		}
+	}
 }
 
 
