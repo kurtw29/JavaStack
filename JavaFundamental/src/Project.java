@@ -25,6 +25,7 @@ public class Project {
 		return this.name+" : "+this.description;		
 	};
 	public Project() {}
+	
 	public Project(String name) {
 		this.name = name;
 	};
