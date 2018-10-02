@@ -16,4 +16,5 @@ public class Galaxy extends Phone implements Ringable{
 	public String unlock() {
 		return "Unlocking via finger print";
 	}
+	
 }
