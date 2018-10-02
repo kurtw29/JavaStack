@@ -4,7 +4,8 @@ public class Samurai extends Human{
 	private static int samuraiPopulation = 0;
 	public Samurai() {
 		this.setHealth(200);
-		Samurai.setSamuraiPopulation(Samurai.howMany() + 1);
+		samuraiPopulation++;
+//		Samurai.setSamuraiPopulation(Samurai.howMany() + 1);
 	}
 	
 	public void deathBlow(Human other) {
