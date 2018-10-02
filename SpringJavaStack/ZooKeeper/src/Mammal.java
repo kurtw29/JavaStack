@@ -1,6 +1,9 @@
 
 public class Mammal {
-	public int energy = 100;
+	public int energy;
+	public Mammal() {
+		this.energy = 100;		
+	}
 	
 	//getter
 	public int getEenergy() {
