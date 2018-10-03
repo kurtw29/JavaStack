@@ -49,4 +49,25 @@ public class Trie {
 		return true;
 	}
 	
+	//Return a boolean whether the word is in the trie or not
+	public boolean isWordValid(String word) {
+		//create currentNode to keep track where in trie
+		Node currentNode = this.root;
+		//iterate thru the character of the word
+		for(int i = 0; i < word.length(); i++) {
+			char currentLetter = word.charAt(i);
+			//create 'child' as the currentLetter's node & check if currentNode's HashMap ("children") has the current character
+			Node child = currentNode.children.get(currentLetter);
+			// if child is null (ie letter not found in currentNode's"children") then return false
+			if(child == null) {
+				return false;
+			}else {
+				// else true -> update currentNode to character's node (child) and repeat
+				currentNode = child;
+			}
+		}
+		// after iterate through the word, return = currentNode.children(isCompleteWord) 
+		return currentNode.isCompleteWord;
+	}
+	
 }
