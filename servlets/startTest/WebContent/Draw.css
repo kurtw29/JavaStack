@@ -1,0 +1,28 @@
+@charset "UTF-8";
+
+*{
+	margin:0px;
+	padding:0px;
+}
+.title{
+	text-align:center;	
+}
+.purple{
+	width:30px;
+	height:30px;
+	background-color:#ad7fa8;
+	display:inline-block;
+}
+.blue{
+	width:30px;
+	height:30px;
+	background-color:lightblue;
+	display:inline-block;
+}
+table{
+	border-spacing:0px;
+	margin:0px auto;
+}
+tr, td{
+	border-spacing:0px;
+}
