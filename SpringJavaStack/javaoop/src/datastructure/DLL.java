@@ -70,4 +70,33 @@ public class DLL {
 		}
 		return counter;
 	}
+	
+	void insertAt(Node newNode, int index) {
+		if(index == this.size()) {
+			newNode.previous = this.tail;
+			this.tail.next = newNode;
+			this.tail = newNode;
+		}else
+		if(index == 0) {
+			newNode.next = this.head;
+			this.head.previous = newNode;
+			this.head = newNode;
+		}else if(index > this.size()) {
+			System.out.println("invalid index argument");
+		}else {
+			int counter = 0;
+			Node current = this.head;
+			while(current != null) {
+				current = current.next;
+				counter++;
+				if(counter == index) {
+					current.previous.next = newNode;
+					newNode.previous = current.previous;
+					newNode.next = current;
+					current.previous = newNode;
+				}
+			}
+			
+		}
+	}
 }
