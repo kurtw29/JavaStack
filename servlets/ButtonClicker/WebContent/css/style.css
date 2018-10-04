@@ -1,0 +1,9 @@
+@charset "UTF-8";
+input{
+	width:200px;
+	margin:30px auto;
+}
+h2{
+	margin-top:20px;
+	text-align:center;
+}
