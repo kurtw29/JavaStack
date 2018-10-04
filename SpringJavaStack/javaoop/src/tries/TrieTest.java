@@ -17,6 +17,6 @@ public class TrieTest {
 		}
 		System.out.println(trie.isPrefixValid("p"));
 		System.out.println(trie.isWordValid("car"));
-		
+		trie.printAllKeys();
 	}
 }

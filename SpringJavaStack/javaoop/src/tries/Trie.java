@@ -70,4 +70,22 @@ public class Trie {
 		return currentNode.isCompleteWord;
 	}
 	
+	public void printAllKeys() {
+		Node currentNode = this.root;
+		printAll(currentNode);
+		
+	}
+	public void printAll(Node node) {
+		for(Character key : node.children.keySet()) {
+			if(key != null) {
+				System.out.println(key);
+			}
+		}
+		for(Node loopNode: node.children.values()) {
+			if(loopNode != null) {
+				printAll(loopNode);
+			}
+		}
+	}
+	
 }
