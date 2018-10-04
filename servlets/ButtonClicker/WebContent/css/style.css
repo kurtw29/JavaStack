@@ -1,7 +1,11 @@
 @charset "UTF-8";
-input{
+a{
 	width:200px;
-	margin:30px auto;
+	border:2px solid black;
+	border-radius:10px;
+	padding:20px;
+	margin:30px;
+	text-align:center;
 }
 h2{
 	margin-top:20px;
