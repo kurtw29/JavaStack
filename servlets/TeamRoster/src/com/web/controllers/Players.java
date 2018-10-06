@@ -9,19 +9,20 @@ import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.models.Player;
 import com.web.models.Team;
 
 /**
- * Servlet implementation class Teams
+ * Servlet implementation class Players
  */
-@WebServlet("/teams")
-public class Teams extends HttpServlet {
+@WebServlet("/player")
+public class Players extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Teams() {
+    public Players() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -30,14 +31,13 @@ public class Teams extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("detailTeamId") != null) {
-			Team selectedTeam = Team.getTeam(Integer.parseInt(request.getParameter("detailTeamId")));
+		if(request.getParameter("teamId") != null) {
+			Team selectedTeam = Team.getTeam(Integer.parseInt(request.getParameter("teamId")));
 			request.setAttribute("selectedTeam", selectedTeam);
-			RequestDispatcher view = request.getRequestDispatcher("views/team.jsp");
+			RequestDispatcher view = request.getRequestDispatcher("views/addPlayer.jsp");
 			view.forward(request, response);
 		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/addTeam.jsp");
-			view.forward(request, response);
+			
 		}
 	}
 
@@ -45,22 +45,18 @@ public class Teams extends HttpServlet {
 	 * @see HttpServlet#doPost(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		//Add new Team
-		if(request.getParameter("teamName") == "" || request.getParameter("teamName") == null) {
-			RequestDispatcher view = request.getRequestDispatcher("views/addTeam.jsp");
-			view.forward(request, response);
-		}else {
-		Team newTeam = new Team(request.getParameter("teamName"));
-		System.out.println("What's newTeam? : "+newTeam);
-		Team.addToList(newTeam);
-		//redirect after post logic:
-		response.sendRedirect("/TeamRoster");
+//		Add new player
+		if(request.getParameter("firstName") == null || request.getParameter("lastName") == null || request.getParameter("age") == null) {
+			String firstName = request.getParameter("firstName");
+			String lastName = request.getParameter("lastName");
+			int age = Integer.parseInt(request.getParameter("age"));
+			Player newPlayer = new Player(firstName, lastName, age);
+			int teamId = Integer.parseInt(request.getParameter("team"));
+			Team selectedTeam = Team.getTeam(teamId);
+			System.out.println("who's newPlayer "+ newPlayer);
+			selectedTeam.addToPlayerList(newPlayer, teamId);
+			response.sendRedirect("/TeamRoster/teams?detailTeamId="+teamId);
 		}
-		
-//		response.setContentType("text/html");
-//		PrintWriter out = response.getWriter();
-//		out.write("<h1>doPost addTeaming</h1>");
-		
 	}
 
 }

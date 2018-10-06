@@ -4,11 +4,23 @@ public class Player {
 	String firstName;
 	String lastName;
 	int age;
+	private static int playerCounter = 0;
+	private int id;
 	
 	public Player(String first, String last, int age) {
 		this.firstName = first;
 		this.lastName = last;
 		this.age = age;
+		Player.playerCounter++;
+		this.id = Player.playerCounter-1;
+	}
+
+	public int getId() {
+		return id;
+	}
+
+	public void setId(int id) {
+		this.id = id;
 	}
 
 	public String getFirstName() {

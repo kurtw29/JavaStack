@@ -2,24 +2,25 @@ package com.web.controllers;
 
 import java.io.IOException;
 
-import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.web.models.Team;
+
 /**
- * Servlet implementation class Player
+ * Servlet implementation class DeletePlayer
  */
-@WebServlet("/Player")
-public class Player extends HttpServlet {
+@WebServlet("/DeletePlayer")
+public class DeletePlayer extends HttpServlet {
 	private static final long serialVersionUID = 1L;
        
     /**
      * @see HttpServlet#HttpServlet()
      */
-    public Player() {
+    public DeletePlayer() {
         super();
         // TODO Auto-generated constructor stub
     }
@@ -28,13 +29,11 @@ public class Player extends HttpServlet {
 	 * @see HttpServlet#doGet(HttpServletRequest request, HttpServletResponse response)
 	 */
 	protected void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-		if(request.getParameter("teamId") == "") {
-			RequestDispatcher view = request.getRequestDispatcher("views/addPlayer.jsp");
-			view.forward(request, response);
-		}else {
-			RequestDispatcher view = request.getRequestDispatcher("views/team.jsp");
-			view.forward(request, response);
-		}
+		int deletePlayerId = Integer.parseInt(request.getParameter("deletePlayerId"));
+		int teamId = Integer.parseInt(request.getParameter("teamId"));
+		System.out.println("deletePlayerId: "+deletePlayerId);
+		Team.removePlayerList(deletePlayerId, teamId);
+		response.sendRedirect("/TeamRoster/teams?detailTeamId="+teamId);
 	}
 
 	/**
