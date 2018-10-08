@@ -1,0 +1,26 @@
+@charset "UTF-8";
+.container{
+	margin-top:20%;
+}
+.error{
+	color:red;
+	text-align:center;
+}
+form{
+	width:300px;
+	margin:0px auto;
+}
+label{
+	text-align:center;
+	display:block;
+}
+input{
+	display:block;
+	width:250px;
+	margin:10px auto;
+}
+button{
+	width:100px;
+	margin:10px auto;
+	display:block;
+}
