@@ -1,9 +1,11 @@
 package com.web.studentroster.services;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.stereotype.Service;
 
+import com.web.studentroster.models.Dorm;
 import com.web.studentroster.models.Student;
 import com.web.studentroster.repositories.StudentRepository;
 
@@ -16,7 +18,7 @@ public class StudentService {
 	}
 	
 	//retrieve all students
-	public Iterable<Student> findAll() {
+	public List<Student> findAll() {
 		return studentRepo.findAll();
 	}
 	
@@ -35,5 +37,19 @@ public class StudentService {
 	public Student createStudent(String first, String last, int age) {
 		Student newStudent = new Student(first, last, age);
 		return studentRepo.save(newStudent);
+	}
+	
+	//set student dorm
+	public Student setDorm(Long studentId, Dorm dorm) {
+		Student student = studentRepo.findStudentById(studentId);
+		student.setDorm(dorm);
+		return studentRepo.save(student);
+	}
+	
+	//remove student from dorm
+	public Student removeDorm(Long studentId) {
+		Student student = studentRepo.findStudentById(studentId);
+		student.setDorm(null);
+		return studentRepo.save(student);
 	}
 }

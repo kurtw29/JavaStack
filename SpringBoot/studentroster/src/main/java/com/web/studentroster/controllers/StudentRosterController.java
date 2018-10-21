@@ -7,21 +7,25 @@ import org.springframework.web.bind.annotation.RequestParam;
 
 import com.web.studentroster.models.Student;
 import com.web.studentroster.services.ContactService;
+import com.web.studentroster.services.DormService;
 import com.web.studentroster.services.StudentService;
 
 @Controller
 public class StudentRosterController {
 	private final StudentService studentServ;
 	private final ContactService contactServ;
+	private final DormService dormServ;
 	
-	public StudentRosterController(StudentService studentServ, ContactService contactServ ) {
+	public StudentRosterController(StudentService studentServ, ContactService contactServ, DormService dormServ ) {
 		this.studentServ = studentServ;
 		this.contactServ = contactServ;
+		this.dormServ = dormServ;
 	}
 	
 	//serve home jsp
 	@RequestMapping("/")
-	public String index() {
+	public String index(Model model) {
+		model.addAttribute("dorms", dormServ.findAllDorms());
 		return "index.jsp";
 	}
 	

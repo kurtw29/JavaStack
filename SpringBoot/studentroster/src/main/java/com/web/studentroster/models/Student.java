@@ -6,6 +6,8 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
@@ -20,6 +22,10 @@ public class Student {
 	private int age;
 	@OneToOne(mappedBy="student", cascade = CascadeType.ALL, fetch=FetchType.LAZY)
 	private Contact contact;
+	
+	@ManyToOne(fetch=FetchType.LAZY)
+	@JoinColumn(name="dorm_id")
+	private Dorm dorm;
 	
 	public Student() {
 		
@@ -69,6 +75,14 @@ public class Student {
 
 	public void setContact(Contact contact) {
 		this.contact = contact;
+	}
+
+	public Dorm getDorm() {
+		return dorm;
+	}
+
+	public void setDorm(Dorm dorm) {
+		this.dorm = dorm;
 	}
 	
 }
